@@ -1,4 +1,4 @@
-var canvas, ctx, x, y, dx, dy, ballRadius, color;
+var canvas, ctx, x, y, dx, dy, ballRadius, color, image;
 
 function setup() {
   canvas = document.getElementById('myCanvas');
@@ -9,6 +9,7 @@ function setup() {
   dy = -2;
   ballRadius = 10;
   color = '#82589F';
+  image = document.getElementById('source');
 }
 
 function drawBall() {
@@ -19,16 +20,21 @@ function drawBall() {
   ctx.closePath();  
 }
 
+function drawImage() {
+  ctx.drawImage(image, x, y, 50, 50);
+}
+
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawBall();
+  // drawBall();
+  drawImage();
   
-  if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+  if(x + dx > canvas.width - 50 || x + dx < 1) {
     dx = -dx;
     color = '#D6A2E8';
   }
 
-  if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+  if(y + dy > canvas.height - 32 || y + dy < 1) {
     dy = -dy;
     color = '#B33771';
   }
